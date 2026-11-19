@@ -1,0 +1,34 @@
+  s.style.left = Math.random() * 100 + "%";
+  s.style.animationDuration = (6 + Math.random() * 6) + "s";
+  s.style.animationDelay = (Math.random() * 6) + "s";
+  document.body.appendChild(s);
+}
+function toast(t) {
+  pop.textContent = t; pop.classList.add("show");
+  clearTimeout(popT); popT = setTimeout(function () { pop.classList.remove("show"); }, 2600);
+}
+document.getElementById("go").onclick = function () {
+  document.getElementById("s1").classList.add("hide");
+  document.getElementById("s2").classList.remove("hide");
+};
+var no = document.getElementById("no");
+no.onclick = function () {
+  c++;
+  card.classList.remove("shake"); void card.offsetWidth; card.classList.add("shake");
+  if (navigator.vibrate) navigator.vibrate(120);
+  if (c <= 4) { toast(nos[c - 1]); }
+  if (c >= 4) {
+    no.disabled = true; no.textContent = "Bloqueado 🔒";
+    setTimeout(function () { toast("Ya no hay más opciones, Sandi 😎 Solo queda enviar"); }, 2800);
+  }
+};
+document.getElementById("yes").onclick = function () {
+  var n = document.getElementById("num").value.replace(/[^\d+]/g, "");
+  var m = document.getElementById("msg");
+  if (n.replace(/\D/g, "").length < 7) { m.textContent = "Ese número se ve incompleto, Sandi 🧐"; return; }
+  m.textContent = "¡Genial, Sandi! Abriendo WhatsApp… 🎉";
+  window.location.href = "https://wa.me/" + DEST + "?text=" + encodeURIComponent("Hola Alexander, soy Sandi 👋 Mi número es " + n);
+};
+</script>
+</body>
+</html>
